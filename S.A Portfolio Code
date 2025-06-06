@@ -1,0 +1,390 @@
+### 📁 **Updated File Structure**
+```bash
+/glen-smith-portfolio
+├── index.html
+├── style.css
+├── script.js
+├── /images
+│ ├── headshot.jpg
+│ ├── cert-secplus.png
+│ ├── project1-thumb.jpg
+│ └── ...
+└── README.md
+```
+
+---
+
+### ✨ **1. Updated HTML (index.html)**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samuel Asante | IT Security Consultant</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Dark Mode Toggle -->
+<button id="darkModeToggle" aria-label="Toggle dark mode">
+<i class="fas fa-moon"></i>
+</button>
+
+<header>
+<div class="container">
+<img src="images/headshot.jpg" alt="Samuel Asante" class="profile-img">
+<h1>Glen Smith</h1>
+<h2>IT Security Consultant</h2>
+<p><i class="fas fa-map-marker-alt"></i> Dublin, Ireland | 
+<i class="fas fa-envelope"></i> <a href="mailto:asamuelbrako@gmail.com">asamuelbrako@gmail.com</a> | 
+<i class="fas fa-phone"></i> +44 7838 678912</p>
+</div>
+</header>
+
+<!-- About Section -->
+<section id="about">
+<div class="container">
+<h2><i class="fas fa-user-secret"></i> About Me</h2>
+<p>Certified IT Security Professional with 5+ years of experience in IT systems security, vulnerability assessments, risk management, and compliance audits. Holder of <strong>CompTIA Security+, CCNA, and EC-Council</strong> certifications.</p>
+</div>
+</section>
+
+<!-- Certifications -->
+<section id="certifications">
+<div class="container">
+<h2><i class="fas fa-certificate"></i> Certifications</h2>
+<div class="grid" id="certs-container"></div>
+</div>
+</section>
+
+<!-- Projects Gallery -->
+<section id="projects">
+<div class="container">
+<h2><i class="fas fa-project-diagram"></i> Projects</h2>
+<div class="grid" id="projects-container"></div>
+</div>
+</section>
+
+<!-- Image Modal -->
+<div id="imageModal" class="modal">
+<span class="close">&times;</span>
+<img class="modal-content" id="modalImage">
+<div id="caption"></div>
+</div>
+
+<!-- Contact Form -->
+<section id="contact">
+<div class="container">
+<h2><i class="fas fa-envelope"></i> Contact</h2>
+<form action="https://formsubmit.co/asamuelbrako@gmail.com" method="POST">
+<input type="hidden" name="_subject" value="New portfolio inquiry">
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+<textarea name="message" placeholder="Your Message" required></textarea>
+<button type="submit">Send Message</button>
+</form>
+<div class="social-links">
+<a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+</div>
+</div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
+```
+
+---
+
+### 🎨 **2. Supercharged CSS (style.css)**
+```css
+:root {
+--primary: #2c3e50;
+--secondary: #3498db;
+--light: #ecf0f1;
+--dark: #1a252f;
+--shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode */
+.dark-mode {
+--primary: #121212;
+--secondary: #1e88e5;
+--light: #1e1e1e;
+--dark: #f5f5f5;
+background-color: #121212;
+color: #f5f5f5;
+}
+
+/* Base Styles */
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+line-height: 1.6;
+margin: 0;
+padding: 0;
+background-color: var(--light);
+color: var(--dark);
+transition: background 0.3s ease;
+}
+
+/* Dark Mode Toggle */
+#darkModeToggle {
+position: fixed;
+top: 20px;
+right: 20px;
+background: var(--secondary);
+color: white;
+border: none;
+border-radius: 50%;
+width: 40px;
+height: 40px;
+cursor: pointer;
+z-index: 1000;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+/* Header */
+header {
+background: var(--primary);
+color: white;
+text-align: center;
+padding: 3rem 0;
+position: relative;
+}
+
+.profile-img {
+width: 150px;
+height: 150px;
+border-radius: 50%;
+object-fit: cover;
+border: 5px solid var(--secondary);
+margin-bottom: 1rem;
+}
+
+/* Grid Layout */
+.grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+gap: 25px;
+margin-top: 2rem;
+}
+
+/* Cards */
+.card {
+background: white;
+border-radius: 8px;
+padding: 1.5rem;
+box-shadow: var(--shadow);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Project Cards */
+.project-card {
+position: relative;
+overflow: hidden;
+}
+
+.project-img {
+width: 100%;
+height: 200px;
+object-fit: cover;
+border-radius: 5px;
+cursor: pointer;
+transition: transform 0.3s ease;
+}
+
+.project-img:hover {
+transform: scale(1.05);
+}
+
+/* Modal */
+.modal {
+display: none;
+position: fixed;
+z-index: 1000;
+padding-top: 100px;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+margin: auto;
+display: block;
+width: 80%;
+max-width: 700px;
+}
+
+.close {
+position: absolute;
+top: 15px;
+right: 35px;
+color: #f1f1f1;
+font-size: 40px;
+font-weight: bold;
+cursor: pointer;
+}
+
+/* Contact Form */
+form {
+max-width: 600px;
+margin: 0 auto;
+}
+
+input, textarea {
+width: 100%;
+padding: 12px;
+margin: 8px 0;
+border: 1px solid #ddd;
+border-radius: 4px;
+box-sizing: border-box;
+}
+
+button[type="submit"] {
+background: var(--secondary);
+color: white;
+padding: 12px 20px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+font-size: 16px;
+transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+background: #2980b9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+.grid {
+grid-template-columns: 1fr;
+}
+
+.modal-content {
+width: 95%;
+}
+}
+```
+
+---
+
+### ⚡ **3. Supercharged JavaScript (script.js)**
+```javascript
+// Data
+const certifications = [
+{ 
+name: "CompTIA Security+", 
+issuer: "CompTIA",
+icon: "fas fa-shield-alt"
+},
+{ 
+name: "Cisco CCNA", 
+issuer: "Cisco",
+icon: "fas fa-network-wired"
+},
+// Add other certs...
+];
+
+const projects = [
+{
+title: "E-Commerce Security Assessment",
+description: "Conducted OWASP Top 10 scan for online retailer.",
+outcome: "Identified 3 critical vulnerabilities including SQLi.",
+image: "images/project1-thumb.jpg",
+fullImage: "images/project1-full.jpg"
+},
+// Add other projects...
+];
+
+// DOM Loaded
+document.addEventListener('DOMContentLoaded', () => {
+loadCertifications();
+loadProjects();
+setupModal();
+setupDarkMode();
+});
+
+// Load Certifications
+function loadCertifications() {
+const container = document.getElementById('certs-container');
+
+certifications.forEach(cert => {
+container.innerHTML += `
+<div class="card cert-card">
+<i class="${cert.icon} fa-3x"></i>
+<h3>${cert.name}</h3>
+<p>${cert.issuer}</p>
+</div>
+`;
+});
+}
+
+// Load Projects
+function loadProjects() {
+const container = document.getElementById('projects-container');
+
+projects.forEach(project => {
+container.innerHTML += `
+<div class="card project-card">
+<img src="${project.image}" alt="${project.title}" class="project-img">
+<h3>${project.title}</h3>
+<p>${project.description}</p>
+<p class="outcome"><strong>Outcome:</strong> ${project.outcome}</p>
+</div>
+`;
+});
+}
+
+// Image Modal
+function setupModal() {
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImage");
+const captionText = document.getElementById("caption");
+const closeBtn = document.querySelector(".close");
+
+document.querySelectorAll('.project-img').forEach(img => {
+img.addEventListener('click', function() {
+modal.style.display = "block";
+modalImg.src = this.src.replace('-thumb', '-full');
+captionText.innerHTML = this.alt;
+});
+});
+
+closeBtn.onclick = function() { 
+modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+if (event.target == modal) {
+modal.style.display = "none";
+}
+}
+}
+
+// Dark Mode Toggle
+function setupDarkMode() {
+const toggle = document.getElementById('darkModeToggle');
+const icon = toggle.querySelector('i');
+
+toggle.addEventListener('click', () => {
+document.body.classList.toggle('dark-mode');
+
+if (document.body.classList.contains('dark-mode')) {
+icon.classList.replace('fa-moon', 'fa-sun');
+} else {
+icon.classList.replace('fa-sun', 'fa-moon');
+}
+});
+}
+```
